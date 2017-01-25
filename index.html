@@ -1,22 +1,40 @@
 <h1>Voting App!</h1>
 <h4> Your Address is: </h4>
 <p id = accountAddr> </p>
-<div id = optionCreation>
-    <h4> Add Options</h4>
-    <button id="addOption">Add Proposal</button>
-    <button id="submitOptions">Submit</button>
 
-</div>
+<button id="monday">Monday</button>
+<button id="Tuesday">Tuesday</button>
+<button id="Wednesday">Wednesday</button>
+<button id="Thursday">Thursday</button>
+<button id="Friday">Friday</button>
+
 <script type="text/javascript" src="web3.min.js"></script>
 <script type="text/javascript">
+var accounts;
 if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
+    accounts = web3.eth.accounts;
 } else {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
-var el = function(id){ return document.querySelector(id); };
 
-const accounts = web3.eth.accounts;
+
+var el = function(id){ return document.querySelector(id); };
+el('#monday').addEventListener('click', function(){
+    console.log("Monday");
+});
+el('#tuesday').addEventListener('click', function(){
+    console.log("Tues");
+});
+el('#wednesday').addEventListener('click', function(){
+    console.log("Wed");
+});
+el('#thursday').addEventListener('click', function(){
+    console.log("Thurs");
+});
+el('#friday').addEventListener('click', function(){
+    console.log("Fri");
+});
 el('#accountAddr').innerHTML = accounts[0];
 
 </script>
