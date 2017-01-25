@@ -1,4 +1,12 @@
 <h1>Voting App!</h1>
+<h4> Your Address is: </h4>
+<p id = accountAddr> </p>
+<div id = optionCreation>
+    <h4> Add Options</h4>
+    <button id="addOption">Add Proposal</button>
+    <button id="submitOptions">Submit</button>
+
+</div>
 <script type="text/javascript" src="web3.min.js"></script>
 <script type="text/javascript">
 if (typeof web3 !== 'undefined') {
@@ -6,6 +14,11 @@ if (typeof web3 !== 'undefined') {
 } else {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
+var el = function(id){ return document.querySelector(id); };
+
+const accounts = web3.eth.accounts;
+el('#accountAddr').innerHTML = accounts[0];
+
 </script>
 
 
