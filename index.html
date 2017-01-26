@@ -23,21 +23,21 @@
     <th>Friday</th>
   </tr>
   <tr>
-    <td id="tablemonday"></td>
-    <td id="tabletuesday"></td>
-    <td id="tablewednesday"></td>
-    <td id="tablethursday"></td>
-    <td id="tablefriday"></td>
+    <td id="day1"></td>
+    <td id="day2"></td>
+    <td id="day3"></td>
+    <td id="day4"></td>
+    <td id="day5"></td>
   </tr>
 </table>
 <button id="loadProp">Load Proposal</button>
 <input type="text" id="loadPropID" placeholder="Enter proposal id"></input>
 <div id="buttons">
-    <button id="monday">Monday</button>
-    <button id="Tuesday">Tuesday</button>
-    <button id="Wednesday">Wednesday</button>
-    <button id="Thursday">Thursday</button>
-    <button id="Friday">Friday</button>
+    <button id="button1">Monday</button>
+    <button id="button2">Tuesday</button>
+    <button id="button3">Wednesday</button>
+    <button id="button4">Thursday</button>
+    <button id="button5">Friday</button>
 </div>
 
 <script type="text/javascript" src="web3.min.js"></script>
@@ -67,8 +67,17 @@ VoteAppInstance.numOfPeople((err, res) =>{
 /*VoteAppInstance.addMember("0x2D2A96CBf67C7DF18F00dCA231164db5a4fE3859", {from: accounts[0] }, (err, res) => {
   console.log(res);
 });*/
-el('#changeAddrContract').addEventListener('click', function(){
-    VoteAppInstance = VoteApp.at(el('#contractAddrInput').value);
+el('#loadProp').addEventListener('click', function(){
+    var number = el('#loadPropID').value;
+    console.log("load ", number);
+    VoteAppInstance.getProposalName(parseInt(number), (err, res) =>{
+      el('#proposalname').innerHTML = res;
+    });
+    for(let i = 1 ; i <= 5 ; i++){
+      var day = VoteAppInstance.getVoteCount(parseInt(number), parseInt(i), (err, res) => {
+        el(`#day${i}`).innerHTML = res;
+      });
+    }
 });
 
 el('#addPeopleButton').addEventListener('click',function(){
@@ -91,19 +100,26 @@ VoteAppInstance.getProposalCount((err, res)=>{
   }
 })
 
-el('#monday').addEventListener('click', function(){
-    console.log("Monday");
+el('#button1').addEventListener('click', function(){
+  var number = el('#loadPropID').value;
+    VoteAppInstance.vote(parseInt(number), 1, {from: accounts[0]}, (err, res) =>{
+      if(err){
+        console.log("VOTE ERROR");
+      }else {
+        alert("You voted Monday");
+      }
+    });
 });
-el('#tuesday').addEventListener('click', function(){
+el('#button2').addEventListener('click', function(){
     console.log("Tues");
 });
-el('#wednesday').addEventListener('click', function(){
+el('#button3').addEventListener('click', function(){
     console.log("Wed");
 });
-el('#thursday').addEventListener('click', function(){
+el('#button4').addEventListener('click', function(){
     console.log("Thurs");
 });
-el('#friday').addEventListener('click', function(){
+el('#button5').addEventListener('click', function(){
     console.log("Fri");
 });
 el('#submit').addEventListener('click', function(){
