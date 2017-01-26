@@ -51,6 +51,9 @@ el('#changeAddrContract').addEventListener('click', function(){
 
 el('#addPeopleButton').addEventListener('click',function(){
   VoteAppInstance.addMember( el('#newPersonField').value, {from: accounts[0]}, (err, res) => {
+    if(err){
+      console.log(err);
+    }
       console.log("someone added ", res);
   })
 })
