@@ -1,12 +1,19 @@
 <h1>Voting App!</h1>
 <h4> Your Address is: </h4>
-<p id = accountAddr> </p>
+<p id = accountAddr></p>
 
-<button id="monday">Monday</button>
-<button id="Tuesday">Tuesday</button>
-<button id="Wednesday">Wednesday</button>
-<button id="Thursday">Thursday</button>
-<button id="Friday">Friday</button>
+<div id="buttons">
+    <button id="monday">Monday</button>
+    <button id="Tuesday">Tuesday</button>
+    <button id="Wednesday">Wednesday</button>
+    <button id="Thursday">Thursday</button>
+    <button id="Friday">Friday</button>
+</div>
+
+<span id="options"></span>
+<button id="addOpts">Add Options</button>
+<button id="submit">Submit</button>
+
 
 <script type="text/javascript" src="web3.min.js"></script>
 <script type="text/javascript">
@@ -14,6 +21,7 @@ var accounts;
 if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
     accounts = web3.eth.accounts;
+    el('#accountAddr').innerHTML = accounts[0];
 } else {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 }
@@ -35,7 +43,20 @@ el('#thursday').addEventListener('click', function(){
 el('#friday').addEventListener('click', function(){
     console.log("Fri");
 });
-el('#accountAddr').innerHTML = accounts[0];
+el('#submit').addEventListener('click', function(){
+    el('#options').style.display = "none";
+});
+var countBox = 1;
+var boxName = 0;
+
+el('#addOpts').addEventListener('click', function(){
+    console.log(countBox);
+    console.log(boxName);
+    var boxName="textBox"+countBox;
+    el('#options').innerHTML+='<br/><input type="text" id="'+boxName+'" value="'+boxName+'" "  /><br/>';
+    countBox += 1;
+    // el('#buttons').style.display = "none";
+});
 
 </script>
 
