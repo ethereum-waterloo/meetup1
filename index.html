@@ -1,11 +1,37 @@
 <h1>Voting App!</h1>
 <h4> Your Address is: </h4>
 <p id = accountAddr></p>
-<h4> Enter Contract Addr</h4>
-<input type="text" id="contractAddrInput" value="Give Addr"></input>
-<button id="changeAddrContract">Change Contract Location</button>
-<input type="text" id="newPersonField" value="Give Addr"></input>
+
+<input type="text" id="newPersonField" placeholder="New Person Addr"></input>
 <button id="addPeopleButton">Add Person</button>
+<br>
+<br>
+<h4> Add new proposal </h4>
+<input type="text" id="newPersonField" placeholder="New Prop Name"></input>
+<button id="addPeopleButton">Add Person</button>
+
+<br>
+<br>
+<h4> Current Proposal </h4>
+<p id = "proposalname"></p>
+<table id="votetable" border="black">
+  <tr>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+  </tr>
+  <tr>
+    <td id="tablemonday"></td>
+    <td id="tabletuesday"></td>
+    <td id="tablewednesday"></td>
+    <td id="tablethursday"></td>
+    <td id="tablefriday"></td>
+  </tr>
+</table>
+<button id="loadProp">Load Proposal</button>
+<input type="text" id="loadPropID" placeholder="Enter proposal id"></input>
 <div id="buttons">
     <button id="monday">Monday</button>
     <button id="Tuesday">Tuesday</button>
@@ -13,11 +39,6 @@
     <button id="Thursday">Thursday</button>
     <button id="Friday">Friday</button>
 </div>
-
-<span id="options"></span>
-<button id="addOpts">Add Options</button>
-<button id="submit">Submit</button>
-
 
 <script type="text/javascript" src="web3.min.js"></script>
 <script type="text/javascript">
@@ -54,8 +75,9 @@ el('#addPeopleButton').addEventListener('click',function(){
   VoteAppInstance.addMember( el('#newPersonField').value, {from: accounts[0]}, (err, res) => {
     if(err){
       console.log(err);
-    }
+    } else {
       console.log("someone added ", res);
+    }
   })
 })
 
