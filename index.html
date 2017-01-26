@@ -49,7 +49,7 @@ var contractABI = [{"constant":true,"inputs":[{"name":"","type":"uint256"}],"nam
 
 var el = function(id){ return document.querySelector(id); };
 var web3;
-while(typeof web3 !== 'undefined' && typeof web3.currentProvider !== 'undefined'){
+while(typeof web3 === 'undefined'){
   console.log('what');
 }
 if (typeof web3 !== 'undefined' && typeof web3.currentProvider !== 'undefined') {
