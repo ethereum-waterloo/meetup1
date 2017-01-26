@@ -48,7 +48,9 @@ var proposalArray = [];
 var contractABI = [{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"proposals","outputs":[{"name":"name","type":"string"},{"name":"monday","type":"uint256"},{"name":"tuesday","type":"uint256"},{"name":"wednesday","type":"uint256"},{"name":"thursday","type":"uint256"},{"name":"friday","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"addr","type":"address"}],"name":"removeMember","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"chairperson","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"proposalID","type":"uint256"}],"name":"getProposalName","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"name","type":"string"}],"name":"newProposal","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"voters","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"proposalID","type":"uint256"},{"name":"day","type":"uint256"}],"name":"vote","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"getProposalCount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"addr","type":"address"}],"name":"addMember","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"numOfPeople","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"proposalID","type":"uint256"},{"name":"day","type":"uint256"}],"name":"getVoteCount","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"}];
 var VoteAppInstance;
 var el = function(id){ return document.querySelector(id); };
-
+var web3;
+setTimeout(load, 3000);
+function load (){
 if (typeof web3 !== 'undefined' && typeof web3.currentProvider !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
     accounts = web3.eth.accounts;
@@ -61,6 +63,7 @@ if (typeof web3 !== 'undefined' && typeof web3.currentProvider !== 'undefined') 
     el('#accountAddr').innerHTML = accounts[0];
     var VoteAppInstance = web3.eth.contract(contractABI).at("0x5cf571e60B66B78f5070eF1b53ADEC6D0e1CB93A");
 
+}
 }
 
 // VoteAppInstance.numOfPeople((err, res) =>{
@@ -101,7 +104,7 @@ el('#newproposalbutton').addEventListener('click',function(){
     }
   })
 })
-
+/*
 VoteAppInstance.getProposalCount((err, res)=>{
   var numProp = parseInt(res);
   for(var i = 0; i < numProp; i++) {
@@ -110,7 +113,7 @@ VoteAppInstance.getProposalCount((err, res)=>{
         console.log(proposalArray[i])
       });
   }
-})
+})*/
 
 el('#button1').addEventListener('click', function(){
   var number = el('#loadPropID').value;
