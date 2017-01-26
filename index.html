@@ -7,8 +7,8 @@
 <br>
 <br>
 <h4> Add new proposal </h4>
-<input type="text" id="newPersonField" placeholder="New Prop Name"></input>
-<button id="addPeopleButton">Add Person</button>
+<input type="text" id="newproposalfield" placeholder="New Prop Name"></input>
+<button id="newproposalbutton">New Proposal</button>
 
 <br>
 <br>
@@ -86,6 +86,15 @@ el('#addPeopleButton').addEventListener('click',function(){
       console.log(err);
     } else {
       console.log("someone added ", res);
+    }
+  })
+})
+el('#newproposalbutton').addEventListener('click',function(){
+  VoteAppInstance.newProposal( el('#newproposalfield').value, {from: accounts[0]}, (err, res) => {
+    if(err){
+      console.log(err);
+    } else {
+      console.log("new prop added ", res);
     }
   })
 })
